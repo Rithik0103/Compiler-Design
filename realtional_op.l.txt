@@ -1,0 +1,14 @@
+%{
+#include <stdio.h>
+%}
+
+%%
+[[:alpha:]]+("=="|">="|"<="|">"|"<")   printf("Word followed by relational operator: %s\n", yytext);
+[[:alpha:]]+                            printf("Word without relational operator: %s\n", yytext);
+.                                       printf("Invalid input\n");
+%%
+
+int main() {
+    yylex();
+    return 0;
+}
